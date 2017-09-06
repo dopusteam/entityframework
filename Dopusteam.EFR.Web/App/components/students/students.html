@@ -1,0 +1,88 @@
+﻿<div ng-controller="studentsController as vm">
+    <table>
+        <thead>
+        <tr>
+            <th colspan="2">Добавление студента:</th>
+        </tr>
+        </thead>
+        <tr>
+            <td>Имя</td>
+            <td><input type="text"
+                       ng-model="vm.newStudent.name"/></td>
+        </tr>
+        <tr>
+            <td>Фамилия</td>
+            <td>
+                <input type="text"
+                       ng-model="vm.newStudent.lastName"/>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2"><input type="button"
+                                   value="Save"
+                                   ng-click="vm.addStudent()" /></th>
+        </tr>
+    </table>
+
+    <select ng-model="vm.limit"
+            ng-change="vm.getStudents()">
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+    </select>
+
+    <div>
+        <label>
+            Id<input type="radio"
+                     ng-change="vm.getStudents()"
+                     ng-model="vm.sortField"
+                     value="1" />
+        </label>
+        <label>
+            Имя<input type="radio"
+                      ng-change="vm.getStudents()"
+                      ng-model="vm.sortField"
+                      value="2" />
+        </label>
+        <label>
+            Фамилия<input type="radio"
+                          ng-change="vm.getStudents()"
+                          ng-model="vm.sortField"
+                          value="3" />
+        </label>
+    </div>
+    
+    <div>
+        <label>
+            По возрастанию<input type="radio"
+                                 ng-change="vm.getStudents()"
+                                 ng-model="vm.sortOrder"
+                                 value="1" />
+        </label>
+        <label>
+            По убыванюю<input type="radio"
+                              ng-change="vm.getStudents()"
+                              ng-model="vm.sortOrder"
+                              value="2" />
+        </label>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="student in vm.students">
+            <td>{{student.Name}}</td>
+            <td>{{student.LastName}}</td>
+            <td><input type="button"
+                       ng-click="vm.removeStudent(student.Id)"
+                       value="Удалить" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

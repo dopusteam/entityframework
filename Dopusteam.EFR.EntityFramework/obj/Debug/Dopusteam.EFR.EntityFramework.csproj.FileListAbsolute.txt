@@ -1,0 +1,14 @@
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Dopusteam.EFR.EntityFramework.dll.config
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Dopusteam.EFR.EntityFramework.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Dopusteam.EFR.EntityFramework.pdb
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Dopusteam.EFR.Core.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Dopusteam.EFR.Core.pdb
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework.xml
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.csprojResolveAssemblyReference.cache
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.pdb
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.InitialMigration.resources
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.csproj.GenerateResource.Cache

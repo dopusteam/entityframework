@@ -1,0 +1,5 @@
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Core\bin\Debug\Dopusteam.EFR.Core.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Core\bin\Debug\Dopusteam.EFR.Core.pdb
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Core\obj\Debug\Dopusteam.EFR.Core.csprojResolveAssemblyReference.cache
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Core\obj\Debug\Dopusteam.EFR.Core.dll
+c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Core\obj\Debug\Dopusteam.EFR.Core.pdb
