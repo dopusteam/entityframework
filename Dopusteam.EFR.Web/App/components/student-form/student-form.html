@@ -1,0 +1,37 @@
+﻿<div ng-controller="studentFormController as vm">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan="2">Добавление студента:</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Имя</td>
+            <td>
+                <input type="text"
+                       ng-model="vm.name" />
+            </td>
+        </tr>
+        <tr>
+            <td>Фамилия</td>
+            <td>
+                <input type="text"
+                       ng-model="vm.lastName" />
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.save()">
+                    Сохранить
+                </button>
+                <button type="button"
+                        class="btn btn-warning"
+                        ng-click="vm.back()">
+                    Отмена
+                </button>
+            </th>
+        </tr>
+    </table>
+</div>

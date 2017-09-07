@@ -5,18 +5,20 @@
         var me = {
             getAll: getAll,
             create: create,
-            remove: remove
+            update: update,
+            remove: remove,
+            get: get
         }
 
         return me;
 
-        function getAll(sortField, sortOrder, limit) {
+        function getAll(sortField, sortOrder, limit, showGroup, showProjects) {
             var deferred = $q.defer();
 
             $http(
                 {
                     method: 'GET',
-                    url: '/Students/All?limit=' + limit + '&sortField=' + sortField + '&sortOrder=' + sortOrder
+                    url: '/Students/All?limit=' + limit + '&sortField=' + sortField + '&sortOrder=' + sortOrder + '&showGroup=' + showGroup + '&showProjects=' + showProjects
                 })
                 .then(
                     function (response) {
@@ -49,6 +51,26 @@
             return deferred.promise;
         }
 
+        function update(student) {
+            var deferred = $q.defer();
+
+            $http(
+                {
+                    method: 'POST',
+                    url: '/Students/Update',
+                    data: student
+                })
+                .then(
+                    function () {
+                        deferred.resolve();
+                    },
+                    function () {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        }
+
         function remove(studentId) {
             var deferred = $q.defer();
 
@@ -61,6 +83,25 @@
                 .then(
                     function () {
                         deferred.resolve();
+                    },
+                    function () {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        }
+
+        function get(studentId) {
+            var deferred = $q.defer();
+
+            $http(
+                {
+                    method: 'GET',
+                    url: '/Students/Get/?id=' + studentId
+                })
+                .then(
+                    function (response) {
+                        deferred.resolve({ student: response.data.data });
                     },
                     function () {
                         deferred.reject();

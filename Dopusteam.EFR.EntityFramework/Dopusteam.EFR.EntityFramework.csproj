@@ -50,9 +50,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EfrDbContext.cs" />
+    <Compile Include="EfrDbInitializer.cs" />
     <Compile Include="Migrations\201709061858250_InitialMigration.cs" />
     <Compile Include="Migrations\201709061858250_InitialMigration.Designer.cs">
       <DependentUpon>201709061858250_InitialMigration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201709071653264_ProjectsAndGroupsAreAdded.cs" />
+    <Compile Include="Migrations\201709071653264_ProjectsAndGroupsAreAdded.Designer.cs">
+      <DependentUpon>201709071653264_ProjectsAndGroupsAreAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -70,6 +75,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201709061858250_InitialMigration.resx">
       <DependentUpon>201709061858250_InitialMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709071653264_ProjectsAndGroupsAreAdded.resx">
+      <DependentUpon>201709071653264_ProjectsAndGroupsAreAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

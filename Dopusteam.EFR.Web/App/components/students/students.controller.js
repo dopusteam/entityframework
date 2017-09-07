@@ -11,6 +11,9 @@
             lastName: null
         }
 
+        vm.showProjects = false;
+        vm.showGroup = false;
+
         vm.sortField = 1;
         vm.sortOrder = 1;
         vm.limit = 2;
@@ -47,7 +50,7 @@
 
         function getStudents() {
             studentsService
-                .getAll(vm.sortField, vm.sortOrder, vm.limit)
+                .getAll(vm.sortField, vm.sortOrder, vm.limit, vm.showGroup, vm.showProjects)
                 .then(function (data) {
                     vm.students = data.students;
                 });

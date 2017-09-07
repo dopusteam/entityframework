@@ -12,3 +12,4 @@ c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFramewo
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.pdb
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.InitialMigration.resources
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.csproj.GenerateResource.Cache
+c:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.ProjectsAndGroupsAreAdded.resources

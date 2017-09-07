@@ -17,6 +17,11 @@
             {
                 url: '/',
                 templateUrl: '/App/components/students/students.html'
+            })
+            .state('studentForm',
+            {
+                url: '/studentForm?studentId',
+                templateUrl: '/App/components/student-form/student-form.html'
             });
     }
 })();
