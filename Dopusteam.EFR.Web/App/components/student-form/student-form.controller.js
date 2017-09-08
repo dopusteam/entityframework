@@ -26,7 +26,7 @@
         function activate() {
             if (!isNaN(vm.id) && vm.id !== 0) {
                 studentsService.get(vm.id)
-                    .then(function (data) {
+                    .then(function(data) {
                         vm.name = data.student.Name;
                         vm.lastName = data.student.LastName;
                         vm.group = data.student.Group;
@@ -47,6 +47,9 @@
                             vm.groupId = enrolledGroup.GroupId;
                         }
                     });
+            } else {
+                getProjects();
+                getGroups();
             }
         }
 
@@ -76,6 +79,22 @@
                         $state.go('students');
                     });
             }
+        }
+
+        function getProjects() {
+            studentsService
+                    .getProjects()
+                    .then(function (data) {
+                        vm.projects = data.projects;
+                    });
+        }
+
+        function getGroups() {
+            studentsService
+                    .getGroups()
+                    .then(function (data) {
+                        vm.groups = data.groups;
+                    });
         }
 
         function back() {

@@ -3,6 +3,7 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Dopusteam.EFR.Core.Entities;
@@ -21,8 +22,10 @@ namespace Dopusteam.EFR.Web.Controllers
             bool showGroup = false,
             bool showProjects = false)
         {
+            //создаём запрос
             var studentsQuery = this.DbContext.Students.Take(limit);
 
+            // зависимоти от параметров добавляем сортировку и её направление
             switch (sortField)
             {
                 case SortField.Id:
@@ -44,17 +47,23 @@ namespace Dopusteam.EFR.Web.Controllers
                     break;
             }
 
+            // если необходимо загрузить группу студента
             if (showGroup)
             {
+                // то указываем эо явно. Поле Group в сущности Student не помечено virtual,
+                // поэтому загружаться не будет, если мы явно не сделаем Include
                 studentsQuery = studentsQuery.Include(student => student.Group);
             }
+            // аналогично с проектами
             if (showProjects)
             {
                 studentsQuery = studentsQuery.Include(student => student.Projects);
             }
 
+            // выполняем запрос
             var students = studentsQuery.ToList();
 
+            // это для отправки на фронт, чтоб выести можно было
             var data = students.Select(student => new StudentModel
             {
                 Id = student.Id,
@@ -99,14 +108,47 @@ namespace Dopusteam.EFR.Web.Controllers
         }
 
         [HttpGet]
+        public JsonResult GetProjects()
+        {
+            var projects = this.DbContext.Projects.ToList();
+
+            var data = projects.Select(project => new StudentProjectModel
+            {
+                Name = project.Name,
+                ProjectId = project.Id,
+                IsAssigned = false
+            }).ToList();
+
+            return this.Json(new {data}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public JsonResult GetGroups()
+        {
+            var groups = this.DbContext.Groups.ToList();
+
+            var data = groups.Select(group => new StudentGroupModel
+            {
+                Number = group.Number,
+                GroupId = group.Id,
+                IsEnrolled = false
+            }).ToList();
+
+            return this.Json(new {data}, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
         public JsonResult Get(long id)
         {
+            // достаём студента вместе с проектами
+            // для группы Include делать не надо, так как Student в любом случае содержит GroupId, этого нам достаточно
             var student = this.DbContext.Students.Include(s => s.Projects).Single(s => s.Id == id);
 
             var projects = this.DbContext.Projects.ToList();
 
             var groups = this.DbContext.Groups.ToList();
 
+            // тут для вывода на фромте дальше
             var studentProjects = projects.Select(project => new StudentProjectModel
             {
                 Name = project.Name,
@@ -136,8 +178,10 @@ namespace Dopusteam.EFR.Web.Controllers
         [HttpPost]
         public JsonResult Delete(long studentId)
         {
+            // находим студента в БД
             var student = this.DbContext.Students.Find(studentId);
 
+            // и удаляем его
             this.DbContext.Students.Remove(student);
 
             this.DbContext.SaveChanges();
@@ -153,26 +197,33 @@ namespace Dopusteam.EFR.Web.Controllers
             var projects = this.DbContext.Projects.Where(project => studentInput.ProjectIds.Contains(project.Id)).ToList();
             var group = studentInput.GroupId.HasValue ? this.DbContext.Groups.First(g => g.Id == studentInput.GroupId.Value) : null;
 
+            // определяем какие проекты удалить надо 'из студента'
+            // т.е. отвязываем проект от сущности студента
             var deletedProjects = existedStudent.Projects.Except(projects);
 
             foreach (var deletedProject in deletedProjects)
             {
+                // и удаляем у проекта из списка студентов текущего студента
                 deletedProject.Students.Remove(existedStudent);
             }
 
+            // так же, определяем, какие проекты надо привязать к студенту
             var newProjects = projects.Except(existedStudent.Projects);
 
             foreach (var newProject in newProjects)
             {
+                // и добавляем их в соответствующй список
                 existedStudent.Projects.Add(newProject);
             }
 
+            // инициируем остальные поля
             existedStudent.Name = studentInput.Name;
             existedStudent.LastName = studentInput.LastName;
 
             existedStudent.Group = group;
             existedStudent.GroupId = group?.Id ?? 0;
 
+            // и сохраняем
             this.DbContext.Students.AddOrUpdate(existedStudent);
 
             this.DbContext.SaveChanges();

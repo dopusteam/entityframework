@@ -7,6 +7,8 @@
             create: create,
             update: update,
             remove: remove,
+            getProjects: getProjects,
+            getGroups: getGroups,
             get: get
         }
 
@@ -102,6 +104,44 @@
                 .then(
                     function (response) {
                         deferred.resolve({ student: response.data.data });
+                    },
+                    function () {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        }
+
+        function getProjects() {
+            var deferred = $q.defer();
+
+            $http(
+                {
+                    method: 'GET',
+                    url: '/Students/GetProjects/'
+                })
+                .then(
+                    function (response) {
+                        deferred.resolve({ projects: response.data.data });
+                    },
+                    function () {
+                        deferred.reject();
+                    });
+
+            return deferred.promise;
+        }
+
+        function getGroups() {
+            var deferred = $q.defer();
+
+            $http(
+                {
+                    method: 'GET',
+                    url: '/Students/GetGroups'
+                })
+                .then(
+                    function (response) {
+                        deferred.resolve({ groups: response.data.data });
                     },
                     function () {
                         deferred.reject();
