@@ -13,3 +13,9 @@ c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFramewo
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.InitialMigration.resources
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.csproj.GenerateResource.Cache
 c:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.ProjectsAndGroupsAreAdded.resources
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Npgsql.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework6.Npgsql.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework6.Npgsql.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Npgsql.xml
