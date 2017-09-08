@@ -77,9 +77,17 @@ namespace Dopusteam.EFR.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Create(Student student)
+        public JsonResult Create(StudentFormInput studentInput)
         {
-            student.Id = 0;
+            var student = new Student();
+
+            var projects = this.DbContext.Projects.Where(project => studentInput.ProjectIds.Contains(project.Id)).ToList();
+            var group = studentInput.GroupId.HasValue ? this.DbContext.Groups.First(g => g.Id == studentInput.GroupId.Value) : null;
+
+            student.Name = studentInput.Name;
+            student.LastName = studentInput.LastName;
+            student.Projects = projects;
+            student.Group = group;
 
             this.DbContext.Students.Add(student);
 
@@ -93,16 +101,36 @@ namespace Dopusteam.EFR.Web.Controllers
         [HttpGet]
         public JsonResult Get(long id)
         {
-            var student = this.DbContext.Students.Find(id);
+            var student = this.DbContext.Students.Include(s => s.Projects).Single(s => s.Id == id);
 
-            var studentModel = new StudentModel
+            var projects = this.DbContext.Projects.ToList();
+
+            var groups = this.DbContext.Groups.ToList();
+
+            var studentProjects = projects.Select(project => new StudentProjectModel
+            {
+                Name = project.Name,
+                ProjectId = project.Id,
+                IsAssigned = student.Projects.Any(studentProject => studentProject.Id == project.Id)
+            }).ToList();
+
+            var studentGroups = groups.Select(group => new StudentGroupModel
+            {
+                Number = group.Number,
+                GroupId = group.Id,
+                IsEnrolled = student.GroupId == group.Id
+            }).ToList();
+
+            var data = new StudentFormModel
             {
                 Id = student.Id,
                 LastName = student.LastName,
-                Name = student.Name
+                Name = student.Name,
+                Groups = studentGroups,
+                Projects = studentProjects
             };
 
-            return this.Json(new {data = studentModel}, JsonRequestBehavior.AllowGet);
+            return this.Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpPost]
@@ -118,12 +146,33 @@ namespace Dopusteam.EFR.Web.Controllers
         }
 
         [HttpPost]
-        public JsonResult Update(Student student)
+        public JsonResult Update(StudentFormInput studentInput)
         {
-            var existedStudent = this.DbContext.Students.Find(student.Id);
+            var existedStudent = this.DbContext.Students.Include(s => s.Projects).Single(s => s.Id == studentInput.Id);
 
-            existedStudent.Name = student.Name;
-            existedStudent.LastName = student.LastName;
+            var projects = this.DbContext.Projects.Where(project => studentInput.ProjectIds.Contains(project.Id)).ToList();
+            var group = studentInput.GroupId.HasValue ? this.DbContext.Groups.First(g => g.Id == studentInput.GroupId.Value) : null;
+
+            var deletedProjects = existedStudent.Projects.Except(projects);
+
+            foreach (var deletedProject in deletedProjects)
+            {
+                deletedProject.Students.Remove(existedStudent);
+            }
+
+            var newProjects = projects.Except(existedStudent.Projects);
+
+            foreach (var newProject in newProjects)
+            {
+                existedStudent.Projects.Add(newProject);
+            }
+
+            existedStudent.Name = studentInput.Name;
+            existedStudent.LastName = studentInput.LastName;
+
+            existedStudent.Group = group;
+            existedStudent.GroupId = group?.Id ?? 0;
+
             this.DbContext.Students.AddOrUpdate(existedStudent);
 
             this.DbContext.SaveChanges();

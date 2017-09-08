@@ -14,10 +14,12 @@
         vm.lastName = null;
         vm.id = parseInt($state.params.studentId);
         vm.projects = [];
-        vm.group = null;
+        vm.groups = [];
+
+        vm.groupId = null;
 
         vm.save = save;
-        vm.back = back
+        vm.back = back;
 
         activate();
 
@@ -29,6 +31,21 @@
                         vm.lastName = data.student.LastName;
                         vm.group = data.student.Group;
                         vm.projects = data.student.Projects;
+                        vm.groups = data.student.Groups.map(function(group) {
+                            return {
+                                Number: group.Number,
+                                GroupId: group.GroupId.toString(),
+                                IsEnrolled: group.IsEnrolled
+                            }
+                        });
+
+                        var enrolledGroup = vm.groups.find(function(group) {
+                            return group.IsEnrolled;
+                        });
+
+                        if (enrolledGroup) {
+                            vm.groupId = enrolledGroup.GroupId;
+                        }
                     });
             }
         }
@@ -37,7 +54,13 @@
             var student = {
                 id: vm.id,
                 name: vm.name,
-                lastName: vm.lastName
+                lastName: vm.lastName,
+                projectIds: vm.projects.filter(function(project) {
+                    return project.IsAssigned;
+                }).map(function(project) {
+                    return project.ProjectId
+                }),
+                groupId: vm.groupId
             };
 
             if (vm.id && !isNaN(vm.id)) {

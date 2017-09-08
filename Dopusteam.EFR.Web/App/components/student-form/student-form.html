@@ -20,6 +20,31 @@
             </td>
         </tr>
         <tr>
+            <td>Проекты</td>
+            <td>
+                <div ng-repeat="project in vm.projects">
+                    <label>
+                        {{project.Name}}
+                        <input ng-model="project.IsAssigned"
+                               type="checkbox" />
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Группа</td>
+            <td>
+                <div ng-repeat="group in vm.groups">
+                    <label>
+                        {{group.Number}}
+                        <input ng-model="vm.groupId"
+                               value="{{group.GroupId}}"
+                               type="radio"/>
+                    </label>
+                </div>
+            </td>
+        </tr>
+        <tr>
             <th colspan="2">
                 <button type="button"
                         class="btn btn-primary"

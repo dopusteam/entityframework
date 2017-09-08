@@ -167,7 +167,11 @@
     </Compile>
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
+    <Compile Include="Models\StudentFormInput.cs" />
+    <Compile Include="Models\StudentFormModel.cs" />
+    <Compile Include="Models\StudentGroupModel.cs" />
     <Compile Include="Models\StudentModel.cs" />
+    <Compile Include="Models\StudentProjectModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
