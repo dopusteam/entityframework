@@ -1,0 +1,14 @@
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Application.dll.config
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Application.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Application.pdb
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Dopusteam.EFR.Core.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Dopusteam.EFR.EntityFramework.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\EntityFramework.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Dopusteam.EFR.Core.pdb
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\Dopusteam.EFR.EntityFramework.pdb
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\EntityFramework.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\obj\Debug\Dopusteam.EFR.Application.csprojResolveAssemblyReference.cache
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\obj\Debug\Application.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Application\obj\Debug\Application.pdb

@@ -160,8 +160,6 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Enums\SortField.cs" />
-    <Compile Include="Enums\SortOrder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,6 +174,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\components\groups\groups.controller.js" />
     <Content Include="App\components\student-form\student-form.controller.js" />
     <Content Include="App\components\students\students.controller.js" />
     <Content Include="App\components\students\students.html" />
@@ -1000,6 +999,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1010,6 +1010,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Application\Dopusteam.EFR.Application.csproj">
+      <Project>{c6018419-917f-4810-8a86-6e34a7f0cde3}</Project>
+      <Name>Dopusteam.EFR.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dopusteam.EFR.Core\Dopusteam.EFR.Core.csproj">
       <Project>{1BDDC68D-D63C-4C46-8D07-B9471BACDDB1}</Project>
       <Name>Dopusteam.EFR.Core</Name>

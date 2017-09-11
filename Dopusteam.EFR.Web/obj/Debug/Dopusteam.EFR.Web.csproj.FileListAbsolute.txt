@@ -59,3 +59,5 @@ c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFramewo
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Web\bin\Dopusteam.EFR.EntityFramework.pdb
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Web\bin\EntityFramework.xml
 c:\users\dopusteam\documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Web\bin\EntityFramework.SqlServer.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Web\bin\Application.dll
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.Web\bin\Application.pdb

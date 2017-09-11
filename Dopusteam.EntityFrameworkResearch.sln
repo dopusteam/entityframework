@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dopusteam.EFR.EntityFramewo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dopusteam.EFR.Web", "Dopusteam.EFR.Web\Dopusteam.EFR.Web.csproj", "{6F3F7FE7-D226-43CF-A53A-3A744D0D32FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dopusteam.EFR.Application", "Application\Dopusteam.EFR.Application.csproj", "{C6018419-917F-4810-8A86-6E34A7F0CDE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{6F3F7FE7-D226-43CF-A53A-3A744D0D32FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F3F7FE7-D226-43CF-A53A-3A744D0D32FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F3F7FE7-D226-43CF-A53A-3A744D0D32FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6018419-917F-4810-8A86-6E34A7F0CDE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6018419-917F-4810-8A86-6E34A7F0CDE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6018419-917F-4810-8A86-6E34A7F0CDE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6018419-917F-4810-8A86-6E34A7F0CDE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

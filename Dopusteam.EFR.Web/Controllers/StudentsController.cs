@@ -1,13 +1,7 @@
-﻿using System;
-using System.Data.Entity;
-using System.Data.Entity.Migrations;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Linq;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using Application.Enums;
 using Dopusteam.EFR.Core.Entities;
-using Dopusteam.EFR.Web.Enums;
 using Dopusteam.EFR.Web.Models;
 
 namespace Dopusteam.EFR.Web.Controllers
@@ -22,65 +16,15 @@ namespace Dopusteam.EFR.Web.Controllers
             bool showGroup = false,
             bool showProjects = false)
         {
-            //создаём запрос
-            var studentsQuery = this.DbContext.Students.Take(limit);
-
-            // зависимоти от параметров добавляем сортировку и её направление
-            switch (sortField)
-            {
-                case SortField.Id:
-                    studentsQuery = sortOrder == SortOrder.Asc
-                        ? studentsQuery.OrderBy(student => student.Id)
-                        : studentsQuery.OrderByDescending(student => student.Id);
-                    break;
-
-                case SortField.Name:
-                    studentsQuery = sortOrder == SortOrder.Asc
-                        ? studentsQuery.OrderBy(student => student.Name)
-                        : studentsQuery.OrderByDescending(student => student.Name);
-                    break;
-
-                case SortField.LastName:
-                    studentsQuery = sortOrder == SortOrder.Asc
-                        ? studentsQuery.OrderBy(student => student.LastName)
-                        : studentsQuery.OrderByDescending(student => student.LastName);
-                    break;
-            }
-
-            // если необходимо загрузить группу студента
-            if (showGroup)
-            {
-                // то указываем эо явно. Поле Group в сущности Student не помечено virtual,
-                // поэтому загружаться не будет, если мы явно не сделаем Include
-                studentsQuery = studentsQuery.Include(student => student.Group);
-            }
-            // аналогично с проектами
-            if (showProjects)
-            {
-                studentsQuery = studentsQuery.Include(student => student.Projects);
-            }
-
-            // выполняем запрос
-            var students = studentsQuery.ToList();
+            var students = this.StudentsService.GetStudents(
+                limit,
+                sortOrder,
+                sortField,
+                showGroup,
+                showProjects);
 
             // это для отправки на фронт, чтоб выести можно было
-            var data = students.Select(student => new StudentModel
-            {
-                Id = student.Id,
-                GroupId = student.GroupId ?? 0,
-                Group = student.Group != null ? new GroupModel
-                {
-                    Id = student.Group.Id,
-                    Number = student.Group.Number
-                } : null,
-                LastName = student.LastName,
-                Name = student.Name,
-                Projects = student.Projects.Select(project => new ProjectModel
-                {
-                    Name = project.Name,
-                    Id = project.Id
-                }).ToList()
-            });
+            var data = students.Select(this.GetStudentModel);
 
             return this.Json(new {data}, JsonRequestBehavior.AllowGet);
         }
@@ -88,80 +32,56 @@ namespace Dopusteam.EFR.Web.Controllers
         [HttpPost]
         public JsonResult Create(StudentFormInput studentInput)
         {
-            var student = new Student();
+            var student = new Student
+            {
+                Name = studentInput.Name,
+                LastName = studentInput.LastName
+            };
 
-            var projects = this.DbContext.Projects.Where(project => studentInput.ProjectIds.Contains(project.Id)).ToList();
-            var group = studentInput.GroupId.HasValue ? this.DbContext.Groups.First(g => g.Id == studentInput.GroupId.Value) : null;
+            var projectIds = studentInput.ProjectIds;
+            var groupId = studentInput.GroupId;
 
-            student.Name = studentInput.Name;
-            student.LastName = studentInput.LastName;
-            student.Projects = projects;
-            student.Group = group;
+            this.StudentsService.Create(student, projectIds, groupId);
 
-            this.DbContext.Students.Add(student);
-
-            this.DbContext.Entry(student).State = EntityState.Added;
-
-            this.DbContext.SaveChanges();
-
-            return this.Json(new {success = true});
+            return this.Json(new { success = true });
         }
 
         [HttpGet]
         public JsonResult GetProjects()
         {
-            var projects = this.DbContext.Projects.ToList();
+            var projects = this.ProjectsService.GetAllProjects();
 
-            var data = projects.Select(project => new StudentProjectModel
-            {
-                Name = project.Name,
-                ProjectId = project.Id,
-                IsAssigned = false
-            }).ToList();
+            var data = projects.Select(this.GetProjectModel).ToList();
 
-            return this.Json(new {data}, JsonRequestBehavior.AllowGet);
+            return this.Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult GetGroups()
         {
-            var groups = this.DbContext.Groups.ToList();
+            var groups = this.GroupsService.GetAllGroups();
 
-            var data = groups.Select(group => new StudentGroupModel
-            {
-                Number = group.Number,
-                GroupId = group.Id,
-                IsEnrolled = false
-            }).ToList();
+            var data = groups.Select(group => this.GetGroupModel(@group)).ToList();
 
-            return this.Json(new {data}, JsonRequestBehavior.AllowGet);
+            return this.Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
         public JsonResult Get(long id)
         {
-            // достаём студента вместе с проектами
-            // для группы Include делать не надо, так как Student в любом случае содержит GroupId, этого нам достаточно
-            var student = this.DbContext.Students.Include(s => s.Projects).Single(s => s.Id == id);
+            var student = this.StudentsService.GetStudentInfoById(id);
 
-            var projects = this.DbContext.Projects.ToList();
+            var projects = this.ProjectsService.GetAllProjects();
 
-            var groups = this.DbContext.Groups.ToList();
+            var groups = this.GroupsService.GetAllGroups();
 
-            // тут для вывода на фромте дальше
-            var studentProjects = projects.Select(project => new StudentProjectModel
-            {
-                Name = project.Name,
-                ProjectId = project.Id,
-                IsAssigned = student.Projects.Any(studentProject => studentProject.Id == project.Id)
-            }).ToList();
+            var studentProjects = projects
+                .Select(project => this.GetStudentProjectModel(project, student))
+                .ToList();
 
-            var studentGroups = groups.Select(group => new StudentGroupModel
-            {
-                Number = group.Number,
-                GroupId = group.Id,
-                IsEnrolled = student.GroupId == group.Id
-            }).ToList();
+            var studentGroups = groups
+                .Select(group => this.GetStudentGroupModel(group, student))
+                .ToList();
 
             var data = new StudentFormModel
             {
@@ -178,13 +98,7 @@ namespace Dopusteam.EFR.Web.Controllers
         [HttpPost]
         public JsonResult Delete(long studentId)
         {
-            // находим студента в БД
-            var student = this.DbContext.Students.Find(studentId);
-
-            // и удаляем его
-            this.DbContext.Students.Remove(student);
-
-            this.DbContext.SaveChanges();
+            this.StudentsService.RemoveStudent(studentId);
 
             return this.Json(new { success = true });
         }
@@ -192,43 +106,86 @@ namespace Dopusteam.EFR.Web.Controllers
         [HttpPost]
         public JsonResult Update(StudentFormInput studentInput)
         {
-            var existedStudent = this.DbContext.Students.Include(s => s.Projects).Single(s => s.Id == studentInput.Id);
+            var existedStudent = this.StudentsService.GetStudentInfoById(studentInput.Id);
 
-            var projects = this.DbContext.Projects.Where(project => studentInput.ProjectIds.Contains(project.Id)).ToList();
-            var group = studentInput.GroupId.HasValue ? this.DbContext.Groups.First(g => g.Id == studentInput.GroupId.Value) : null;
-
-            // определяем какие проекты удалить надо 'из студента'
-            // т.е. отвязываем проект от сущности студента
-            var deletedProjects = existedStudent.Projects.Except(projects);
-
-            foreach (var deletedProject in deletedProjects)
-            {
-                // и удаляем у проекта из списка студентов текущего студента
-                deletedProject.Students.Remove(existedStudent);
-            }
-
-            // так же, определяем, какие проекты надо привязать к студенту
-            var newProjects = projects.Except(existedStudent.Projects);
-
-            foreach (var newProject in newProjects)
-            {
-                // и добавляем их в соответствующй список
-                existedStudent.Projects.Add(newProject);
-            }
-
-            // инициируем остальные поля
             existedStudent.Name = studentInput.Name;
             existedStudent.LastName = studentInput.LastName;
 
-            existedStudent.Group = group;
-            existedStudent.GroupId = group?.Id ?? 0;
-
-            // и сохраняем
-            this.DbContext.Students.AddOrUpdate(existedStudent);
-
-            this.DbContext.SaveChanges();
+            this.StudentsService.UpdateStudent(
+                existedStudent,
+                studentInput.ProjectIds,
+                studentInput.GroupId);
 
             return this.Json(new { success = true });
+        }
+
+        private StudentModel GetStudentModel(Student student)
+        {
+            var studentGroup = student.Group != null
+                ? new GroupModel
+                {
+                    Id = student.Group.Id,
+                    Number = student.Group.Number
+                }
+                : null;
+
+            var studentProjects = student.Projects.Select(project => new ProjectModel
+            {
+                Name = project.Name,
+                Id = project.Id
+            }).ToList();
+
+            return new StudentModel
+            {
+                Id = student.Id,
+                GroupId = student.GroupId ?? 0,
+                Group = studentGroup,
+                LastName = student.LastName,
+                Name = student.Name,
+                Projects = studentProjects
+            };
+        }
+
+        private StudentProjectModel GetProjectModel(Project project)
+        {
+            return new StudentProjectModel
+            {
+                Name = project.Name,
+                ProjectId = project.Id
+            };
+        }
+
+        
+        private StudentGroupModel GetGroupModel(Group @group)
+        {
+            return new StudentGroupModel
+            {
+                Number = @group.Number,
+                GroupId = @group.Id,
+                IsEnrolled = false
+            };
+        }
+
+        
+
+        private StudentGroupModel GetStudentGroupModel(Group @group, Student student)
+        {
+            return new StudentGroupModel
+            {
+                Number = @group.Number,
+                GroupId = @group.Id,
+                IsEnrolled = student.GroupId == @group.Id
+            };
+        }
+
+        private StudentProjectModel GetStudentProjectModel(Project project, Student student)
+        {
+            return new StudentProjectModel
+            {
+                Name = project.Name,
+                ProjectId = project.Id,
+                IsAssigned = student.Projects.Any(studentProject => studentProject.Id == project.Id)
+            };
         }
     }
 }

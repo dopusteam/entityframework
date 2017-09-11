@@ -1,15 +1,19 @@
-﻿using Dopusteam.EFR.EntityFramework;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using Application;
 
 namespace Dopusteam.EFR.Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected readonly EfrDbContext DbContext;
+        protected readonly StudentsService StudentsService;
+        protected readonly ProjectsService ProjectsService;
+        protected readonly GroupsService GroupsService;
 
         public BaseController()
         {
-            this.DbContext = new EfrDbContext();
+            this.StudentsService = new StudentsService();
+            this.ProjectsService = new ProjectsService();
+            this.GroupsService = new GroupsService();
         }
     }
 }
