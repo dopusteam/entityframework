@@ -13,7 +13,7 @@ namespace Dopusteam.EFR.EntityFramework
 
         public EfrDbContext() : base("DbConnection")
         {
-            Database.SetInitializer(new EfrDbInitializer());
+            //Database.SetInitializer(new EfrDbInitializer());
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -41,7 +41,7 @@ namespace Application
             // потом мы присваиваем сущности студента список проектов
             student.Projects = projects;
             // и группу
-            student.Group = group;
+            student.GroupId = group.Id;
 
             // добавляем студента в БД
             this._dbContext.Students.Add(student);
@@ -177,7 +177,7 @@ namespace Application
                 existedStudent.Projects.Add(newProject);
             }
 
-            existedStudent.Group = group;
+            existedStudent.GroupId = group.Id;
 
             // и сохраняем
             this._dbContext.Students.AddOrUpdate(existedStudent);
