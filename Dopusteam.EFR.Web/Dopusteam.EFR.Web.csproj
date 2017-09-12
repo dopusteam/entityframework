@@ -158,11 +158,17 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProjectFormInput.cs" />
+    <Compile Include="Models\GroupFormInput.cs" />
+    <Compile Include="Models\ProjectInfoModel.cs" />
+    <Compile Include="Models\GroupInfoModel.cs" />
     <Compile Include="Models\GroupModel.cs" />
     <Compile Include="Models\ProjectModel.cs" />
     <Compile Include="Models\StudentFormInput.cs" />
@@ -174,10 +180,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\app.js" />
+    <Content Include="App\components\project-form\project-form.controller.js" />
+    <Content Include="App\components\project-form\project-form.html" />
+    <Content Include="App\components\group-form\group-form.controller.js" />
+    <Content Include="App\components\group-form\group-form.html" />
+    <Content Include="App\components\projects\projects.controller.js" />
+    <Content Include="App\components\projects\projects.html" />
     <Content Include="App\components\groups\groups.controller.js" />
     <Content Include="App\components\student-form\student-form.controller.js" />
     <Content Include="App\components\students\students.controller.js" />
     <Content Include="App\components\students\students.html" />
+    <Content Include="App\services\projects.service.js" />
+    <Content Include="App\services\groups.service.js" />
     <Content Include="App\services\students.service.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -233,6 +247,7 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="App\components\student-form\student-form.html" />
+    <Content Include="App\components\groups\groups.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />

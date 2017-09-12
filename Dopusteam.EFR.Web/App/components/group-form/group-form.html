@@ -1,0 +1,30 @@
+﻿<div ng-controller="groupFormController as vm">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th colspan="2">Добавление группы:</th>
+            </tr>
+        </thead>
+        <tr>
+            <td>Номер</td>
+            <td>
+                <input type="text"
+                       ng-model="vm.number" />
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button type="button"
+                        class="btn btn-primary"
+                        ng-click="vm.save()">
+                    Сохранить
+                </button>
+                <button type="button"
+                        class="btn btn-warning"
+                        ng-click="vm.back()">
+                    Отмена
+                </button>
+            </th>
+        </tr>
+    </table>
+</div>

@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure.Annotations;
 using Dopusteam.EFR.Core.Entities;
 
 namespace Dopusteam.EFR.EntityFramework
@@ -25,7 +27,8 @@ namespace Dopusteam.EFR.EntityFramework
                 .ToTable("Efr_Groups");
 
             modelBuilder.Entity<Project>()
-                .ToTable("Efr_Projects");
+                .ToTable("Efr_Projects")
+                .Property(p => p.Name);
 
             modelBuilder.Entity<Student>()
                 .HasOptional(student => student.Group)

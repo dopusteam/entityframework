@@ -1,0 +1,33 @@
+﻿<div ng-controller="groupsController as vm">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Номер группы</td>
+            <td>Количество студентов</td>
+            <td>Действия</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="group in vm.groups">
+            <td>{{group.Number}}</td>
+            <td>{{group.StudentsAmount}}</td>
+            <td>
+                <button type="button"
+                        class="btn btn-primary"
+                        ui-sref="groupForm({groupId: group.Id})">
+                    Редактировать
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-click="vm.removeGroup(group.Id)">
+                    Удалить
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div><button type="button"
+        class="btn btn-primary"
+        ui-sref="groupForm">
+    Создать
+</button>

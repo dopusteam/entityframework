@@ -1,0 +1,33 @@
+﻿<div ng-controller="projectsController as vm">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>Номер группы</td>
+            <td>Количество студентов</td>
+            <td>Действия</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="project in vm.projects">
+            <td>{{project.Name}}</td>
+            <td>{{project.StudentsAmount}}</td>
+            <td>
+                <button type="button"
+                        class="btn btn-primary"
+                        ui-sref="projectForm({projectId: project.Id})">
+                    Редактировать
+                </button>
+                <button type="button"
+                        class="btn btn-danger"
+                        ng-click="vm.removeProject(project.Id)">
+                    Удалить
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div><button type="button"
+        class="btn btn-primary"
+        ui-sref="projectForm">
+    Создать
+</button>

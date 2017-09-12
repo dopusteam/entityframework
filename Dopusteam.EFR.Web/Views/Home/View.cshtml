@@ -15,9 +15,20 @@
     @Scripts.Render("~/app/js")
 </head>
 <body>
-    <div id="page-wrapper"
-         ng-app="app">
-        <div ui-view></div>
+<div id="page-wrapper"
+     ng-app="app">
+    <div class="btn-group">
+        <button type="button"
+                ui-sref="students"
+                class="btn btn-primary">Студенты</button>
+        <button type="button"
+                ui-sref="projects"
+                class="btn btn-primary">Проекты</button>
+        <button type="button"
+                ui-sref="groups"
+                class="btn btn-primary">Группы</button>
     </div>
+    <div ui-view></div>
+</div>
 </body>
 </html>

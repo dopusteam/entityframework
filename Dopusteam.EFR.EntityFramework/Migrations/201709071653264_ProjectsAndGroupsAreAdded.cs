@@ -33,12 +33,12 @@ namespace Dopusteam.EFR.EntityFramework.Migrations
                         projectId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => new { t.studentId, t.projectId })
-                .ForeignKey("dbo.Efr_Students", t => t.studentId, cascadeDelete: true)
-                .ForeignKey("dbo.Efr_Projects", t => t.projectId, cascadeDelete: true)
+                .ForeignKey("dbo.Efr_Students", t => t.studentId)
+                .ForeignKey("dbo.Efr_Projects", t => t.projectId)
                 .Index(t => t.studentId)
                 .Index(t => t.projectId);
             
-            AddColumn("dbo.Efr_Students", "GroupId", c => c.Long());
+            AddColumn("dbo.Efr_Students", "GroupId", c => c.Long(nullable: true));
             CreateIndex("dbo.Efr_Students", "GroupId");
             AddForeignKey("dbo.Efr_Students", "GroupId", "dbo.Efr_Groups", "Id");
         }

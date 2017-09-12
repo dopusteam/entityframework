@@ -26,8 +26,15 @@ namespace Application
         {
             // достаём из БД проекты, отфильтрованные по id
             var projects = this._projectsService.GetProjectsByIds(studentProjectIds);
-            // достаём группу по id
-            var group = this._groupsService.GetGroupById(groupId);
+
+            if (groupId != null)
+            {
+                // достаём группу по id
+                var group = this._groupsService.GetGroupById(groupId);
+
+                // и присваиваем сущности студента
+                student.GroupId = group.Id;
+            }
 
             // теперь надо указать EF, что список проектов, уже существует в БД
             // т.е. тут мы итерируемсписок проектов
@@ -40,8 +47,6 @@ namespace Application
 
             // потом мы присваиваем сущности студента список проектов
             student.Projects = projects;
-            // и группу
-            student.GroupId = group.Id;
 
             // добавляем студента в БД
             this._dbContext.Students.Add(student);
@@ -148,8 +153,14 @@ namespace Application
 
             // затем достаём проекты, аналогично тому, как доставали при создании нового студента
             var projects = this._projectsService.GetProjectsByIds(projectIds);
-            // и достаём группу
-            var group = this._groupsService.GetGroupById(groupId);
+
+            if (groupId != null)
+            {
+                // и достаём группу
+                var group = this._groupsService.GetGroupById(groupId);
+
+                existedStudent.GroupId = group.Id;
+            }
 
             // определяем какие проекты удалить надо 'из студента'
             // т.е. отвязываем проект от сущности студента
@@ -177,11 +188,19 @@ namespace Application
                 existedStudent.Projects.Add(newProject);
             }
 
-            existedStudent.GroupId = group.Id;
-
             // и сохраняем
             this._dbContext.Students.AddOrUpdate(existedStudent);
             this._dbContext.SaveChanges();
+        }
+
+        public long GetGroupStudentsCount(long groupId)
+        {
+            return this._dbContext.Students.Count(student => student.GroupId == groupId);
+        }
+
+        public long GetProjectStudentsCount(long projectId)
+        {
+            return this._dbContext.Students.Count(student => student.Projects.Any(project => project.Id == projectId));
         }
     }
 }

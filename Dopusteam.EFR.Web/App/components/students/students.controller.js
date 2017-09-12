@@ -18,7 +18,6 @@
         vm.sortOrder = 1;
         vm.limit = 2;
 
-        vm.addStudent = addStudent;
         vm.getStudents = getStudents;
         vm.removeStudent = removeStudent;
 
@@ -26,18 +25,6 @@
 
         function activate() {
             getStudents();
-        }
-
-        function addStudent() {
-            studentsService
-                .create(vm.newStudent)
-                .then(function() {
-                    getStudents();
-                    vm.newStudent = {
-                        name: null,
-                        lastName: null
-                    }
-                });
         }
 
         function removeStudent(studentId) {
