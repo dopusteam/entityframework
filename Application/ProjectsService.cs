@@ -37,12 +37,20 @@ namespace Application
             return projects;
         }
 
+        /// <summary>
+        /// Получение всех проектов
+        /// </summary>
+        /// <returns></returns>
         public IList<Project> GetAllProjects()
         {
             // получение всех записей из БД
             return this._dbContext.Projects.ToList();
         }
 
+        /// <summary>
+        /// Доавление проекта
+        /// </summary>
+        /// <param name="project"></param>
         public void CreateProject(Project project)
         {
             // тупо добавляем проект в DbSet и вызываем SaveChanges.
@@ -52,6 +60,11 @@ namespace Application
             this._dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Получения проекта по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Project GetProjectById(long id)
         {
             // получение проекта по id
@@ -59,6 +72,10 @@ namespace Application
             return this._dbContext.Projects.Find(id);
         }
 
+        /// <summary>
+        /// Обновление проекта
+        /// </summary>
+        /// <param name="project"></param>
         public void UpdateProject(Project project)
         {
             // достаём проект из БД
@@ -74,6 +91,10 @@ namespace Application
             this._dbContext.SaveChanges();
         }
 
+        /// <summary>
+        /// Удаление проекта
+        /// </summary>
+        /// <param name="projectId"></param>
         public void RemoveProject(long projectId)
         {
             // достаём из БД проект, который нужно удалить

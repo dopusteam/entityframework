@@ -7,6 +7,10 @@ namespace Dopusteam.EFR.Web.Controllers
 {
     public class ProjectsController : BaseController
     {
+        /// <summary>
+        /// Получение списка всех проектов
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public JsonResult All()
         {
@@ -17,6 +21,11 @@ namespace Dopusteam.EFR.Web.Controllers
             return this.Json(new {data}, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Создание проекта
+        /// </summary>
+        /// <param name="projectInput"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult Create(ProjectFormInput projectInput)
         {
@@ -30,6 +39,11 @@ namespace Dopusteam.EFR.Web.Controllers
             return this.Json(new { success = true });
         }
 
+        /// <summary>
+        /// Обновление проекта
+        /// </summary>
+        /// <param name="projectInput"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult Update(ProjectFormInput projectInput)
         {
@@ -44,6 +58,11 @@ namespace Dopusteam.EFR.Web.Controllers
             return this.Json(new { success = true });
         }
 
+        /// <summary>
+        /// Удаление проекта
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpPost]
         public JsonResult Delete(long projectId)
         {
@@ -52,6 +71,11 @@ namespace Dopusteam.EFR.Web.Controllers
             return this.Json(new { success = true });
         }
 
+        /// <summary>
+        /// Получение проекта по Id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet]
         public JsonResult Get(long id)
         {
@@ -62,6 +86,11 @@ namespace Dopusteam.EFR.Web.Controllers
             return this.Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
+        /// <summary>
+        /// Создание экземпляра класса, который может быть отправлен на фронт
+        /// </summary>
+        /// <param name="project"></param>
+        /// <returns></returns>
         private ProjectInfoModel GetProjectModel(Project project)
         {
             return new ProjectInfoModel
