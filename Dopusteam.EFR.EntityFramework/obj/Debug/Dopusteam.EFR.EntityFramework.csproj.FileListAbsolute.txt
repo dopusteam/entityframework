@@ -19,3 +19,4 @@ C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFramewo
 C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\EntityFramework6.Npgsql.xml
 C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\bin\Debug\Npgsql.xml
+C:\Users\dopusteam\Documents\visual studio 2015\Projects\Dopusteam.EntityFrameworkResearch\Dopusteam.EFR.EntityFramework\obj\Debug\Dopusteam.EFR.EntityFramework.Migrations.SchemaNameChanged.resources

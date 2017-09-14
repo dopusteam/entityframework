@@ -72,6 +72,10 @@
     <Compile Include="Migrations\201709071653264_ProjectsAndGroupsAreAdded.Designer.cs">
       <DependentUpon>201709071653264_ProjectsAndGroupsAreAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201709141933500_SchemaNameChanged.cs" />
+    <Compile Include="Migrations\201709141933500_SchemaNameChanged.Designer.cs">
+      <DependentUpon>201709141933500_SchemaNameChanged.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -91,6 +95,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201709071653264_ProjectsAndGroupsAreAdded.resx">
       <DependentUpon>201709071653264_ProjectsAndGroupsAreAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201709141933500_SchemaNameChanged.resx">
+      <DependentUpon>201709141933500_SchemaNameChanged.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
