@@ -13,7 +13,7 @@ namespace Dopusteam.EFR.EntityFramework.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201709061858250_InitialMigration"; }
+            get { return "201709180529230_InitialMigration"; }
         }
         
         string IMigrationMetadata.Source
